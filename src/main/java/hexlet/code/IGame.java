@@ -1,6 +1,6 @@
 package hexlet.code;
 
-import java.util.Random;
+import java.security.SecureRandom;
 import java.util.Scanner;
 
 public interface IGame {
@@ -48,7 +48,7 @@ public interface IGame {
     }
 
     default int createNumber(int interval) {
-        Random random = new Random();
+        SecureRandom random = new SecureRandom();
         int number = random.nextInt() % 100;
         return number * interval;
     }
