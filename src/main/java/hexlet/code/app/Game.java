@@ -3,11 +3,11 @@ package hexlet.code.app;
 import java.security.SecureRandom;
 import java.util.Scanner;
 
-public interface IGame {
+public abstract class Game {
 
     Scanner scanner = new Scanner(System.in);
 
-    default void start() {
+    public void start() {
         System.out.println("Welcome to the Brain Games!");
         System.out.print("May I have your name? ");
         String name = scanner.nextLine();
@@ -15,9 +15,9 @@ public interface IGame {
         play(name);
     }
 
-    String getRules();
+    protected abstract String getRules();
 
-    default void play(String name) {
+    private void play(String name) {
         System.out.println(getRules());
 
         for (int i = 0; i < 3; i++) {
@@ -27,16 +27,16 @@ public interface IGame {
         System.out.println("Congratulations, " + name + "!");
     }
 
-    default void round(String name) {
+    private void round(String name) {
         System.out.println("Question: " + getQuestion());
         System.out.print("Your answer: ");
         String userAnswer = scanner.nextLine();
         checkAnswer(userAnswer, getResult(), name);
     }
 
-    String getQuestion();
+    protected abstract String getQuestion();
 
-    String getResult();
+    protected abstract String getResult();
 
     private static void checkAnswer(String userAnswer, String answer, String name) {
         if (answer.equals(userAnswer)) {
@@ -47,7 +47,7 @@ public interface IGame {
         }
     }
 
-    default int createNumber(int interval) {
+    protected int createNumber(int interval) {
         SecureRandom random = new SecureRandom();
         return random.nextInt(interval);
     }

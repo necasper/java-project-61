@@ -1,8 +1,8 @@
 package hexlet.code.app.games;
 
-import hexlet.code.app.IGame;
+import hexlet.code.app.Game;
 
-public class Prime implements IGame {
+public class Prime extends Game {
     private int number;
 
     @Override

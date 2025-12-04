@@ -1,11 +1,11 @@
 package hexlet.code.app.games;
 
-import hexlet.code.app.IGame;
+import hexlet.code.app.Game;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Progression implements IGame {
+public class Progression extends Game {
     int increment;
     List<Integer> progression = new ArrayList<>();
     int result;

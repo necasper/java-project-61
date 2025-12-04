@@ -1,18 +1,21 @@
 package hexlet.code.app.games;
 
-import hexlet.code.app.IGame;
+import hexlet.code.app.Game;
 
-public class Odd implements IGame {
+public class Odd extends Game {
     private int number;
 
     @Override
     public String getRules() {
-        return "Answer 'yes' if the number is even, otherwise answer 'no'.";
+        String rule = "Answer 'yes' if the number is even";
+        rule = rule + ", otherwise answer 'no'.";
+        return rule;
     }
 
     @Override
     public String getQuestion() {
-        number = createNumber(100);
+        int a = 100;
+        number = createNumber(a);
         return String.valueOf(number);
     }
 

@@ -1,8 +1,8 @@
 package hexlet.code.app.games;
 
-import hexlet.code.app.IGame;
+import hexlet.code.app.Game;
 
-public class CalcGame implements IGame {
+public class CalcGame extends Game {
 
     private Exercise exercise;
 
