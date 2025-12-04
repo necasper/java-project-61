@@ -6,10 +6,10 @@ plugins {
 }
 
 application {
-    mainClass = "hexlet.code.App"
+    mainClass = "hexlet.code.app.App"
 }
 
-group = "hexlet.code"
+group = "hexlet.code.app"
 version = "1.0-SNAPSHOT"
 
 repositories {
