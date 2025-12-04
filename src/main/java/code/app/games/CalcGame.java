@@ -1,6 +1,6 @@
-package hexlet.code.app.games;
+package code.app.games;
 
-import hexlet.code.app.Game;
+import code.app.Game;
 
 public class CalcGame extends Game {
 

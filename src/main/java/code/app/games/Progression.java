@@ -1,6 +1,6 @@
-package hexlet.code.app.games;
+package code.app.games;
 
-import hexlet.code.app.Game;
+import code.app.Game;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
-package hexlet.code.app;
+package code.app;
 
-import hexlet.code.Cli;
-import hexlet.code.app.games.*;
+import code.Cli;
+import code.app.games.*;
 
 import java.util.Scanner;
 
@@ -19,7 +19,7 @@ public class App {
         Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
 
-        switch (choice){
+        switch (choice) {
             case 1:
                 Cli.start();
                 break;
