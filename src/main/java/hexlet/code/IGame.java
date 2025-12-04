@@ -49,7 +49,6 @@ public interface IGame {
 
     default int createNumber(int interval) {
         SecureRandom random = new SecureRandom();
-        int number = random.nextInt() % 100;
-        return number * interval;
+        return random.nextInt(interval);
     }
 }
