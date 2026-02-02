@@ -10,22 +10,24 @@ public class CalcGame extends Game {
         int a = createNumber();
         int b = createNumber();
         int operation = getOperation();
-        Exercise exercise = new Exercise();
+        Exercise newExercise = new Exercise();
         switch (operation) {
             case 0:
-                exercise.setResult(a + b);
-                exercise.setExerciseText(a + " + " + b);
+                newExercise.setResult(a + b);
+                newExercise.setExerciseText(a + " + " + b);
                 break;
             case 1:
-                exercise.setResult(a - b);
-                exercise.setExerciseText(a + " - " + b);
+                newExercise.setResult(a - b);
+                newExercise.setExerciseText(a + " - " + b);
                 break;
             case 2:
-                exercise.setResult(a * b);
-                exercise.setExerciseText(a + " * " + b);
+                newExercise.setResult(a * b);
+                newExercise.setExerciseText(a + " * " + b);
                 break;
+            default:
+                throw new IllegalStateException("Unknown operation: " + operation);
         }
-        return exercise;
+        return newExercise;
     }
 
     private static class Exercise {

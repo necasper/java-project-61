@@ -1,7 +1,11 @@
 package code.app;
 
 import code.Cli;
-import code.app.games.*;
+import code.app.games.CalcGame;
+import code.app.games.GCD;
+import code.app.games.Odd;
+import code.app.games.Prime;
+import code.app.games.Progression;
 
 import java.util.Scanner;
 

@@ -23,10 +23,10 @@ public class GCD extends Game {
         return String.valueOf(gcd(a, b));
     }
 
-    public int gcd(int a, int b) {
-        if (b == 0) {
-            return a; // Base case: when b becomes 0, a is the GCD
+    public int gcd(int first, int second) {
+        if (second == 0) {
+            return first; // Base case: when b becomes 0, a is the GCD
         }
-        return gcd(b, a % b); // Recursive call: replace a with b, and b with a % b
+        return gcd(second, first % second); // Recursive call: replace a with b, and b with a % b
     }
 }
