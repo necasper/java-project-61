@@ -1,12 +1,11 @@
 plugins {
-    id("java")
     id("com.github.ben-manes.versions") version "0.53.0"
     application
     checkstyle
 }
 
 application {
-    mainClass = "code.app.App"
+    mainClass = "hexlet.code.App"
 }
 
 group = "hexlet.code"
@@ -17,12 +16,6 @@ repositories {
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-}
-
-tasks.test {
-    useJUnitPlatform()
 }
 
 tasks.getByName("run", JavaExec::class) {

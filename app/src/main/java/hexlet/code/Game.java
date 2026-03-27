@@ -1,4 +1,4 @@
-package code.app;
+package hexlet.code;
 
 import java.security.SecureRandom;
 import java.util.Scanner;

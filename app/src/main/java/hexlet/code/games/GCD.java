@@ -1,6 +1,6 @@
-package code.app.games;
+package hexlet.code.games;
 
-import code.app.Game;
+import hexlet.code.Game;
 
 public class GCD extends Game {
     private int a;

@@ -1,6 +1,6 @@
-package code.app.games;
+package hexlet.code.games;
 
-import code.app.Game;
+import hexlet.code.Game;
 
 public class Prime extends Game {
     private int number;
