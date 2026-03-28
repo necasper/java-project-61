@@ -46,7 +46,7 @@ public abstract class Game {
             return true;
         }
         System.out.println("'" + userAnswer + "' is wrong answer ;(. Correct answer was '" + answer + "'.");
-        System.out.println("Let's try again, " + name);
+        System.out.println("Let's try again, " + name + "!");
         return false;
     }
 
