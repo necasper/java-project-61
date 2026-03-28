@@ -21,6 +21,6 @@ public class Odd extends Game {
 
     @Override
     public String getResult() {
-        return number % 2 == 0 ? "no" : "yes";
+        return number % 2 == 0 ? "yes" : "no";
     }
 }

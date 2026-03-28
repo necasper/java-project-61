@@ -21,30 +21,33 @@ public abstract class Game {
         System.out.println(getRules());
 
         for (int i = 0; i < 3; i++) {
-            round(name);
+            if (!round(name)) {
+                return;
+            }
         }
 
         System.out.println("Congratulations, " + name + "!");
     }
 
-    private void round(String name) {
+    private boolean round(String name) {
         System.out.println("Question: " + getQuestion());
         System.out.print("Your answer: ");
         String userAnswer = scanner.nextLine();
-        checkAnswer(userAnswer, getResult(), name);
+        return checkAnswer(userAnswer, getResult(), name);
     }
 
     protected abstract String getQuestion();
 
     protected abstract String getResult();
 
-    private static void checkAnswer(String userAnswer, String answer, String name) {
+    private static boolean checkAnswer(String userAnswer, String answer, String name) {
         if (answer.equals(userAnswer)) {
             System.out.println("Correct!");
-        } else {
-            System.out.println("'" + userAnswer + "' is wrong answer ;(. Correct answer was '" + answer + "'.");
-            System.out.println("Let's try again, " + name);
+            return true;
         }
+        System.out.println("'" + userAnswer + "' is wrong answer ;(. Correct answer was '" + answer + "'.");
+        System.out.println("Let's try again, " + name);
+        return false;
     }
 
     protected int createNumber(int interval) {
