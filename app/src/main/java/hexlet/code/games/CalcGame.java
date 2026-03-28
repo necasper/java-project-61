@@ -2,7 +2,10 @@ package hexlet.code.games;
 
 import hexlet.code.Game;
 
-public class CalcGame extends Game {
+public final class CalcGame extends Game {
+
+    private static final int OPERAND_UPPER_BOUND_EXCLUSIVE = 100;
+    private static final int OPERATION_UPPER_BOUND_EXCLUSIVE = 2;
 
     private Exercise exercise;
 
@@ -38,25 +41,25 @@ public class CalcGame extends Game {
             return exerciseText;
         }
 
-        public void setExerciseText(String exerciseText) {
-            this.exerciseText = exerciseText;
+        public void setExerciseText(String text) {
+            this.exerciseText = text;
         }
 
         public int getResult() {
             return result;
         }
 
-        public void setResult(int result) {
-            this.result = result;
+        public void setResult(int value) {
+            this.result = value;
         }
     }
 
     private int createNumber() {
-        return createNumber(100);
+        return createNumber(OPERAND_UPPER_BOUND_EXCLUSIVE);
     }
 
     private int getOperation() {
-        return createNumber(2);
+        return createNumber(OPERATION_UPPER_BOUND_EXCLUSIVE);
     }
 
     @Override
@@ -72,6 +75,6 @@ public class CalcGame extends Game {
 
     @Override
     public String getResult() {
-        return String.valueOf(exercise.result);
+        return String.valueOf(exercise.getResult());
     }
 }

@@ -5,11 +5,17 @@ import hexlet.code.Game;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Progression extends Game {
-    int increment;
-    List<Integer> progression = new ArrayList<>();
-    int result;
+public final class Progression extends Game {
 
+    private static final int INCREMENT_RANGE_EXCLUSIVE = 5;
+    private static final int FIRST_TERM_UPPER_EXCLUSIVE = 7;
+    private static final int PROGRESSION_LENGTH = 11;
+    private static final int REMOVED_INDEX_UPPER_EXCLUSIVE = 10;
+    private static final int HIDDEN_PLACEHOLDER = -1;
+
+    private int increment;
+    private List<Integer> progression = new ArrayList<>();
+    private int result;
 
     @Override
     public String getRules() {
@@ -18,18 +24,18 @@ public class Progression extends Game {
 
     @Override
     public String getQuestion() {
-        increment = createNumber(5) + 1;
-        progression.add(createNumber(7));
-        for (int i = 1; i < 11; i++) {
+        increment = createNumber(INCREMENT_RANGE_EXCLUSIVE) + 1;
+        progression.add(createNumber(FIRST_TERM_UPPER_EXCLUSIVE));
+        for (int i = 1; i < PROGRESSION_LENGTH; i++) {
             progression.add(progression.get(i - 1) + increment);
         }
 
-        int removedIndex = createNumber(10);
+        int removedIndex = createNumber(REMOVED_INDEX_UPPER_EXCLUSIVE);
         result = progression.get(removedIndex);
-        progression.set(removedIndex, -1);
+        progression.set(removedIndex, HIDDEN_PLACEHOLDER);
         StringBuilder question = new StringBuilder();
         for (int element : progression) {
-            if (element == -1) {
+            if (element == HIDDEN_PLACEHOLDER) {
                 question.append(".. ");
             } else {
                 question.append(element).append(" ");

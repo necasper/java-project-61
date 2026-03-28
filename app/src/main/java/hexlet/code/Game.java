@@ -5,9 +5,11 @@ import java.util.Scanner;
 
 public abstract class Game {
 
-    Scanner scanner = new Scanner(System.in);
+    private static final int ROUNDS_COUNT = 3;
 
-    public void start() {
+    private final Scanner scanner = new Scanner(System.in);
+
+    public final void start() {
         System.out.println("Welcome to the Brain Games!");
         System.out.print("May I have your name? ");
         String name = scanner.nextLine();
@@ -20,7 +22,7 @@ public abstract class Game {
     private void play(String name) {
         System.out.println(getRules());
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < ROUNDS_COUNT; i++) {
             if (!round(name)) {
                 return;
             }
@@ -50,7 +52,7 @@ public abstract class Game {
         return false;
     }
 
-    protected int createNumber(int interval) {
+    protected final int createNumber(int interval) {
         SecureRandom random = new SecureRandom();
         return random.nextInt(interval);
     }

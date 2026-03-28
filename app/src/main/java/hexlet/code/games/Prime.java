@@ -2,7 +2,10 @@ package hexlet.code.games;
 
 import hexlet.code.Game;
 
-public class Prime extends Game {
+public final class Prime extends Game {
+
+    private static final int UPPER_BOUND_EXCLUSIVE = 100;
+
     private int number;
 
     @Override
@@ -12,7 +15,7 @@ public class Prime extends Game {
 
     @Override
     public String getQuestion() {
-        number = createNumber(100);
+        number = createNumber(UPPER_BOUND_EXCLUSIVE);
         return String.valueOf(number);
     }
 

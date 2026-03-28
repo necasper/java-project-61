@@ -2,7 +2,10 @@ package hexlet.code.games;
 
 import hexlet.code.Game;
 
-public class GCD extends Game {
+public final class GCD extends Game {
+
+    private static final int UPPER_BOUND_EXCLUSIVE = 100;
+
     private int a;
     private int b;
 
@@ -13,8 +16,8 @@ public class GCD extends Game {
 
     @Override
     public String getQuestion() {
-        a = createNumber(100);
-        b = createNumber(100);
+        a = createNumber(UPPER_BOUND_EXCLUSIVE);
+        b = createNumber(UPPER_BOUND_EXCLUSIVE);
         return a + " " + b;
     }
 
@@ -23,7 +26,7 @@ public class GCD extends Game {
         return String.valueOf(gcd(a, b));
     }
 
-    public int gcd(int first, int second) {
+    private int gcd(int first, int second) {
         if (second == 0) {
             return first; // Base case: when b becomes 0, a is the GCD
         }

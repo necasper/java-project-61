@@ -8,7 +8,16 @@ import hexlet.code.games.Progression;
 
 import java.util.Scanner;
 
-public class App {
+public final class App {
+
+    private static final int CHOICE_GREET = 1;
+    private static final int CHOICE_EVEN = 2;
+    private static final int CHOICE_CALC = 3;
+    private static final int CHOICE_GCD = 4;
+    private static final int CHOICE_PROGRESSION = 5;
+    private static final int CHOICE_PRIME = 6;
+    private static final int CHOICE_EXIT = 0;
+
     public static void main(String[] args) {
 
         System.out.println("Please enter the game number and press Enter");
@@ -24,24 +33,25 @@ public class App {
         int choice = scanner.nextInt();
 
         switch (choice) {
-            case 1:
+            case CHOICE_GREET:
                 Cli.start();
                 break;
-            case 2:
+            case CHOICE_EVEN:
                 new Odd().start();
                 break;
-            case 3:
+            case CHOICE_CALC:
                 new CalcGame().start();
                 break;
-            case 4:
+            case CHOICE_GCD:
                 new GCD().start();
                 break;
-            case 5:
+            case CHOICE_PROGRESSION:
                 new Progression().start();
                 break;
-            case 6:
+            case CHOICE_PRIME:
                 new Prime().start();
                 break;
+            case CHOICE_EXIT:
             default:
                 break;
         }

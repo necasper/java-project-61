@@ -2,7 +2,10 @@ package hexlet.code.games;
 
 import hexlet.code.Game;
 
-public class Odd extends Game {
+public final class Odd extends Game {
+
+    private static final int UPPER_BOUND_EXCLUSIVE = 100;
+
     private int number;
 
     @Override
@@ -14,8 +17,7 @@ public class Odd extends Game {
 
     @Override
     public String getQuestion() {
-        int a = 100;
-        number = createNumber(a);
+        number = createNumber(UPPER_BOUND_EXCLUSIVE);
         return String.valueOf(number);
     }
 
