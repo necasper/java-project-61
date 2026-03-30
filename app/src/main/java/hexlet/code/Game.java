@@ -6,6 +6,7 @@ import java.util.Scanner;
 public abstract class Game {
 
     private static final int ROUNDS_COUNT = 3;
+    private static final SecureRandom RANDOM = new SecureRandom();
 
     private final Scanner scanner = new Scanner(System.in);
 
@@ -53,7 +54,6 @@ public abstract class Game {
     }
 
     protected final int createNumber(int interval) {
-        SecureRandom random = new SecureRandom();
-        return random.nextInt(interval);
+        return RANDOM.nextInt(interval);
     }
 }
