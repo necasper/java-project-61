@@ -13,9 +13,17 @@ public final class Progression extends Game {
     private static final int REMOVED_INDEX_UPPER_EXCLUSIVE = 10;
     private static final int HIDDEN_PLACEHOLDER = -1;
 
-    private int increment;
-    private List<Integer> progression = new ArrayList<>();
     private int result;
+
+    private List<Integer> generateProgression() {
+        int increment = createNumber(INCREMENT_RANGE_EXCLUSIVE) + 1;
+        List<Integer> progression = new ArrayList<>();
+        progression.add(createNumber(FIRST_TERM_UPPER_EXCLUSIVE));
+        for (int i = 1; i < PROGRESSION_LENGTH; i++) {
+            progression.add(progression.get(i - 1) + increment);
+        }
+        return progression;
+    }
 
     @Override
     public String getRules() {
@@ -24,12 +32,7 @@ public final class Progression extends Game {
 
     @Override
     public String getQuestion() {
-        increment = createNumber(INCREMENT_RANGE_EXCLUSIVE) + 1;
-        progression.add(createNumber(FIRST_TERM_UPPER_EXCLUSIVE));
-        for (int i = 1; i < PROGRESSION_LENGTH; i++) {
-            progression.add(progression.get(i - 1) + increment);
-        }
-
+        List<Integer> progression = generateProgression();
         int removedIndex = createNumber(REMOVED_INDEX_UPPER_EXCLUSIVE);
         result = progression.get(removedIndex);
         progression.set(removedIndex, HIDDEN_PLACEHOLDER);
@@ -42,7 +45,6 @@ public final class Progression extends Game {
             }
         }
         question.deleteCharAt(question.length() - 1);
-        progression = new ArrayList<>();
         return question.toString();
     }
 

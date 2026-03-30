@@ -5,61 +5,31 @@ import hexlet.code.Game;
 public final class CalcGame extends Game {
 
     private static final int OPERAND_UPPER_BOUND_EXCLUSIVE = 100;
-    private static final int OPERATION_UPPER_BOUND_EXCLUSIVE = 2;
+    private static final char[] OPERATORS = {'+', '-', '*'};
 
-    private Exercise exercise;
+    private String question;
+    private int result;
 
-    private Exercise createExercise() {
-        int a = createNumber();
-        int b = createNumber();
-        int operation = getOperation();
-        Exercise newExercise = new Exercise();
-        switch (operation) {
-            case 0:
-                newExercise.setResult(a + b);
-                newExercise.setExerciseText(a + " + " + b);
+    private void prepareRound() {
+        int number1 = createNumber(OPERAND_UPPER_BOUND_EXCLUSIVE);
+        int number2 = createNumber(OPERAND_UPPER_BOUND_EXCLUSIVE);
+        int indexOperator = createNumber(OPERATORS.length);
+        char operator = OPERATORS[indexOperator];
+
+        question = number1 + " " + operator + " " + number2;
+        switch (operator) {
+            case '+':
+                result = number1 + number2;
                 break;
-            case 1:
-                newExercise.setResult(a - b);
-                newExercise.setExerciseText(a + " - " + b);
+            case '-':
+                result = number1 - number2;
                 break;
-            case 2:
-                newExercise.setResult(a * b);
-                newExercise.setExerciseText(a + " * " + b);
+            case '*':
+                result = number1 * number2;
                 break;
             default:
-                throw new IllegalStateException("Unknown operation: " + operation);
+                throw new IllegalStateException("Unknown operator: " + operator);
         }
-        return newExercise;
-    }
-
-    private static class Exercise {
-        private String exerciseText;
-        private int result;
-
-        public String getExerciseText() {
-            return exerciseText;
-        }
-
-        public void setExerciseText(String text) {
-            this.exerciseText = text;
-        }
-
-        public int getResult() {
-            return result;
-        }
-
-        public void setResult(int value) {
-            this.result = value;
-        }
-    }
-
-    private int createNumber() {
-        return createNumber(OPERAND_UPPER_BOUND_EXCLUSIVE);
-    }
-
-    private int getOperation() {
-        return createNumber(OPERATION_UPPER_BOUND_EXCLUSIVE);
     }
 
     @Override
@@ -69,12 +39,12 @@ public final class CalcGame extends Game {
 
     @Override
     public String getQuestion() {
-        exercise = createExercise();
-        return exercise.getExerciseText();
+        prepareRound();
+        return question;
     }
 
     @Override
     public String getResult() {
-        return String.valueOf(exercise.getResult());
+        return String.valueOf(result);
     }
 }
