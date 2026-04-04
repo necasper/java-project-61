@@ -6,6 +6,8 @@ import java.util.Scanner;
 public abstract class Game {
 
     private static final int ROUNDS_COUNT = 3;
+    private static final int QUESTION_INDEX = 0;
+    private static final int ANSWER_INDEX = 1;
     private static final SecureRandom RANDOM = new SecureRandom();
 
     private final Scanner scanner = new Scanner(System.in);
@@ -33,15 +35,14 @@ public abstract class Game {
     }
 
     private boolean round(String name) {
-        System.out.println("Question: " + getQuestion());
+        String[] qa = nextRound();
+        System.out.println("Question: " + qa[QUESTION_INDEX]);
         System.out.print("Your answer: ");
         String userAnswer = scanner.nextLine();
-        return checkAnswer(userAnswer, getResult(), name);
+        return checkAnswer(userAnswer, qa[ANSWER_INDEX], name);
     }
 
-    protected abstract String getQuestion();
-
-    protected abstract String getResult();
+    protected abstract String[] nextRound();
 
     private static boolean checkAnswer(String userAnswer, String answer, String name) {
         if (answer.equals(userAnswer)) {

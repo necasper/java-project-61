@@ -11,9 +11,6 @@ public final class Progression extends Game {
     private static final int FIRST_TERM_UPPER_EXCLUSIVE = 7;
     private static final int PROGRESSION_LENGTH = 11;
     private static final int REMOVED_INDEX_UPPER_EXCLUSIVE = 10;
-    private static final int HIDDEN_PLACEHOLDER = -1;
-
-    private int result;
 
     private List<Integer> generateProgression() {
         int increment = createNumber(INCREMENT_RANGE_EXCLUSIVE) + 1;
@@ -31,25 +28,20 @@ public final class Progression extends Game {
     }
 
     @Override
-    public String getQuestion() {
-        List<Integer> progression = generateProgression();
+    protected String[] nextRound() {
+        List<Integer> numbers = generateProgression();
         int removedIndex = createNumber(REMOVED_INDEX_UPPER_EXCLUSIVE);
-        result = progression.get(removedIndex);
-        progression.set(removedIndex, HIDDEN_PLACEHOLDER);
-        StringBuilder question = new StringBuilder();
-        for (int element : progression) {
-            if (element == HIDDEN_PLACEHOLDER) {
-                question.append(".. ");
+        int answer = numbers.get(removedIndex);
+
+        String[] parts = new String[PROGRESSION_LENGTH];
+        for (int i = 0; i < PROGRESSION_LENGTH; i++) {
+            if (i == removedIndex) {
+                parts[i] = "..";
             } else {
-                question.append(element).append(" ");
+                parts[i] = String.valueOf(numbers.get(i));
             }
         }
-        question.deleteCharAt(question.length() - 1);
-        return question.toString();
-    }
-
-    @Override
-    public String getResult() {
-        return String.valueOf(result);
+        String question = String.join(" ", parts);
+        return new String[]{question, String.valueOf(answer)};
     }
 }

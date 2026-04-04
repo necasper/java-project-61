@@ -34,7 +34,7 @@ public final class App {
 
         switch (choice) {
             case CHOICE_GREET:
-                Cli.start();
+                Cli.greet();
                 break;
             case CHOICE_EVEN:
                 new Odd().start();
@@ -52,7 +52,9 @@ public final class App {
                 new Prime().start();
                 break;
             case CHOICE_EXIT:
+                break;
             default:
+                System.out.println("Unknown user choice: " + choice);
                 break;
         }
     }

@@ -6,38 +6,29 @@ public final class Prime extends Game {
 
     private static final int UPPER_BOUND_EXCLUSIVE = 100;
 
-    private int number;
-
     @Override
     public String getRules() {
         return "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
     }
 
     @Override
-    public String getQuestion() {
-        number = createNumber(UPPER_BOUND_EXCLUSIVE);
-        return String.valueOf(number);
-    }
-
-    @Override
-    public String getResult() {
-        return isPrime(number) ? "yes" : "no";
+    protected String[] nextRound() {
+        int number = createNumber(UPPER_BOUND_EXCLUSIVE);
+        String answer = isPrime(number) ? "yes" : "no";
+        return new String[]{String.valueOf(number), answer};
     }
 
     public static boolean isPrime(int num) {
-        // Numbers less than or equal to 1 are not prime.
         if (num <= 1) {
             return false;
         }
 
-        // Check for divisibility from 2 up to the square root of num.
         for (int i = 2; i * i <= num; i++) {
             if (num % i == 0) {
-                return false; // If divisible by any number, it's not prime.
+                return false;
             }
         }
 
-        // If no divisors were found in the loop, the number is prime.
         return true;
     }
 }
