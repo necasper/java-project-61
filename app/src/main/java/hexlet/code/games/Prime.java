@@ -2,7 +2,9 @@ package hexlet.code.games;
 
 import hexlet.code.Game;
 
-public final class Prime extends Game {
+import java.security.SecureRandom;
+
+public final class Prime implements Game {
 
     private static final int UPPER_BOUND_EXCLUSIVE = 100;
 
@@ -12,8 +14,8 @@ public final class Prime extends Game {
     }
 
     @Override
-    protected String[] nextRound() {
-        int number = createNumber(UPPER_BOUND_EXCLUSIVE);
+    public String[] nextRound(SecureRandom random) {
+        int number = random.nextInt(UPPER_BOUND_EXCLUSIVE);
         String answer = isPrime(number) ? "yes" : "no";
         return new String[]{String.valueOf(number), answer};
     }

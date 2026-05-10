@@ -2,7 +2,9 @@ package hexlet.code.games;
 
 import hexlet.code.Game;
 
-public final class CalcGame extends Game {
+import java.security.SecureRandom;
+
+public final class CalcGame implements Game {
 
     private static final int OPERAND_UPPER_BOUND_EXCLUSIVE = 100;
     private static final char[] OPERATORS = {'+', '-', '*'};
@@ -26,10 +28,10 @@ public final class CalcGame extends Game {
     }
 
     @Override
-    protected String[] nextRound() {
-        int number1 = createNumber(OPERAND_UPPER_BOUND_EXCLUSIVE);
-        int number2 = createNumber(OPERAND_UPPER_BOUND_EXCLUSIVE);
-        int indexOperator = createNumber(OPERATORS.length);
+    public String[] nextRound(SecureRandom random) {
+        int number1 = random.nextInt(OPERAND_UPPER_BOUND_EXCLUSIVE);
+        int number2 = random.nextInt(OPERAND_UPPER_BOUND_EXCLUSIVE);
+        int indexOperator = random.nextInt(OPERATORS.length);
         char operator = OPERATORS[indexOperator];
 
         String question = number1 + " " + operator + " " + number2;

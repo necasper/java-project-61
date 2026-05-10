@@ -2,7 +2,9 @@ package hexlet.code.games;
 
 import hexlet.code.Game;
 
-public final class GCD extends Game {
+import java.security.SecureRandom;
+
+public final class GCD implements Game {
 
     private static final int UPPER_BOUND_EXCLUSIVE = 100;
 
@@ -12,9 +14,9 @@ public final class GCD extends Game {
     }
 
     @Override
-    protected String[] nextRound() {
-        int a = createNumber(UPPER_BOUND_EXCLUSIVE);
-        int b = createNumber(UPPER_BOUND_EXCLUSIVE);
+    public String[] nextRound(SecureRandom random) {
+        int a = random.nextInt(UPPER_BOUND_EXCLUSIVE);
+        int b = random.nextInt(UPPER_BOUND_EXCLUSIVE);
         String question = a + " " + b;
         String answer = String.valueOf(gcd(a, b));
         return new String[]{question, answer};

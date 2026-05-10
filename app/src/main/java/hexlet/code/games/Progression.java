@@ -2,22 +2,21 @@ package hexlet.code.games;
 
 import hexlet.code.Game;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.security.SecureRandom;
 
-public final class Progression extends Game {
+public final class Progression implements Game {
 
     private static final int INCREMENT_RANGE_EXCLUSIVE = 5;
     private static final int FIRST_TERM_UPPER_EXCLUSIVE = 7;
     private static final int PROGRESSION_LENGTH = 11;
     private static final int REMOVED_INDEX_UPPER_EXCLUSIVE = 10;
 
-    private List<Integer> generateProgression() {
-        int increment = createNumber(INCREMENT_RANGE_EXCLUSIVE) + 1;
-        List<Integer> progression = new ArrayList<>();
-        progression.add(createNumber(FIRST_TERM_UPPER_EXCLUSIVE));
-        for (int i = 1; i < PROGRESSION_LENGTH; i++) {
-            progression.add(progression.get(i - 1) + increment);
+    private static String[] makeProgression(int first, int step, int length) {
+        String[] progression = new String[length];
+        int current = first;
+        for (int i = 0; i < length; i++) {
+            progression[i] = String.valueOf(current);
+            current += step;
         }
         return progression;
     }
@@ -28,20 +27,16 @@ public final class Progression extends Game {
     }
 
     @Override
-    protected String[] nextRound() {
-        List<Integer> numbers = generateProgression();
-        int removedIndex = createNumber(REMOVED_INDEX_UPPER_EXCLUSIVE);
-        int answer = numbers.get(removedIndex);
-
-        String[] parts = new String[PROGRESSION_LENGTH];
-        for (int i = 0; i < PROGRESSION_LENGTH; i++) {
-            if (i == removedIndex) {
-                parts[i] = "..";
-            } else {
-                parts[i] = String.valueOf(numbers.get(i));
-            }
-        }
-        String question = String.join(" ", parts);
-        return new String[]{question, String.valueOf(answer)};
+    public String[] nextRound(SecureRandom random) {
+        int step = random.nextInt(INCREMENT_RANGE_EXCLUSIVE) + 1;
+        int first = random.nextInt(FIRST_TERM_UPPER_EXCLUSIVE);
+        String[] progression = makeProgression(first, step, PROGRESSION_LENGTH);
+        int hiddenIndex = random.nextInt(REMOVED_INDEX_UPPER_EXCLUSIVE);
+        String answer = progression[hiddenIndex];
+        progression[hiddenIndex] = "..";
+        String question = String.join(" ", progression);
+        return new String[]{question, answer};
     }
 }
+
+
