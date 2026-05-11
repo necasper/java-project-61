@@ -1,17 +1,16 @@
 package hexlet.code;
 
-import java.security.SecureRandom;
 import java.util.Scanner;
 
 public final class Engine {
 
-    private static final int ROUNDS_COUNT = 3;
     private static final int QUESTION_INDEX = 0;
     private static final int ANSWER_INDEX = 1;
 
-    private final SecureRandom random = new SecureRandom();
+    private Engine() {
+    }
 
-    public void run(Game game) {
+    public static void run(String rules, String[][] rounds) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Welcome to the Brain Games!");
@@ -19,10 +18,9 @@ public final class Engine {
         String name = scanner.nextLine();
         System.out.println("Hello, " + name + "!");
 
-        System.out.println(game.getRules());
+        System.out.println(rules);
 
-        for (int round = 0; round < ROUNDS_COUNT; round++) {
-            String[] qa = game.nextRound(random);
+        for (String[] qa : rounds) {
             System.out.println("Question: " + qa[QUESTION_INDEX]);
             System.out.print("Your answer: ");
             String userAnswer = scanner.nextLine();
@@ -41,4 +39,3 @@ public final class Engine {
         System.out.println("Congratulations, " + name + "!");
     }
 }
-

@@ -31,26 +31,25 @@ public final class App {
         System.out.print("Your choice: ");
         Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
-        Engine engine = new Engine();
 
         switch (choice) {
             case CHOICE_GREET:
                 Cli.greet();
                 break;
             case CHOICE_EVEN:
-                engine.run(new Odd());
+                new Odd().play();
                 break;
             case CHOICE_CALC:
-                engine.run(new CalcGame());
+                new CalcGame().play();
                 break;
             case CHOICE_GCD:
-                engine.run(new GCD());
+                new GCD().play();
                 break;
             case CHOICE_PROGRESSION:
-                engine.run(new Progression());
+                new Progression().play();
                 break;
             case CHOICE_PRIME:
-                engine.run(new Prime());
+                new Prime().play();
                 break;
             case CHOICE_EXIT:
                 break;

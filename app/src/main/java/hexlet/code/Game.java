@@ -1,10 +1,21 @@
 package hexlet.code;
 
-import java.security.SecureRandom;
-
+/**
+ * A game provides rules and three prepared rounds (question and correct answer each).
+ */
 public interface Game {
 
+    /**
+     * @return rules text shown before rounds
+     */
     String getRules();
 
-    String[] nextRound(SecureRandom random);
+    /**
+     * @return three rows, each {@code [question, correctAnswer]}
+     */
+    String[][] buildRounds();
+
+    default void play() {
+        Engine.run(getRules(), buildRounds());
+    }
 }
