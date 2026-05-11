@@ -6,7 +6,7 @@ import java.security.SecureRandom;
 
 public final class CalcGame implements Game {
 
-    private static final int ROUNDS_COUNT = 3;
+    private static final SecureRandom RANDOM = new SecureRandom();
     private static final int OPERAND_UPPER_BOUND_EXCLUSIVE = 100;
     private static final char[] OPERATORS = {'+', '-', '*'};
 
@@ -29,19 +29,10 @@ public final class CalcGame implements Game {
     }
 
     @Override
-    public String[][] buildRounds() {
-        SecureRandom random = new SecureRandom();
-        String[][] rounds = new String[ROUNDS_COUNT][2];
-        for (int i = 0; i < ROUNDS_COUNT; i++) {
-            rounds[i] = generateRound(random);
-        }
-        return rounds;
-    }
-
-    private static String[] generateRound(SecureRandom random) {
-        int number1 = random.nextInt(OPERAND_UPPER_BOUND_EXCLUSIVE);
-        int number2 = random.nextInt(OPERAND_UPPER_BOUND_EXCLUSIVE);
-        int indexOperator = random.nextInt(OPERATORS.length);
+    public String[] generateRound() {
+        int number1 = RANDOM.nextInt(OPERAND_UPPER_BOUND_EXCLUSIVE);
+        int number2 = RANDOM.nextInt(OPERAND_UPPER_BOUND_EXCLUSIVE);
+        int indexOperator = RANDOM.nextInt(OPERATORS.length);
         char operator = OPERATORS[indexOperator];
 
         String question = number1 + " " + operator + " " + number2;

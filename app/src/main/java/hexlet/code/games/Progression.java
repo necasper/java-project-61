@@ -6,7 +6,7 @@ import java.security.SecureRandom;
 
 public final class Progression implements Game {
 
-    private static final int ROUNDS_COUNT = 3;
+    private static final SecureRandom RANDOM = new SecureRandom();
     private static final int INCREMENT_RANGE_EXCLUSIVE = 5;
     private static final int FIRST_TERM_UPPER_EXCLUSIVE = 7;
     private static final int PROGRESSION_LENGTH = 11;
@@ -28,20 +28,11 @@ public final class Progression implements Game {
     }
 
     @Override
-    public String[][] buildRounds() {
-        SecureRandom random = new SecureRandom();
-        String[][] rounds = new String[ROUNDS_COUNT][2];
-        for (int i = 0; i < ROUNDS_COUNT; i++) {
-            rounds[i] = generateRound(random);
-        }
-        return rounds;
-    }
-
-    private static String[] generateRound(SecureRandom random) {
-        int step = random.nextInt(INCREMENT_RANGE_EXCLUSIVE) + 1;
-        int first = random.nextInt(FIRST_TERM_UPPER_EXCLUSIVE);
+    public String[] generateRound() {
+        int step = RANDOM.nextInt(INCREMENT_RANGE_EXCLUSIVE) + 1;
+        int first = RANDOM.nextInt(FIRST_TERM_UPPER_EXCLUSIVE);
         String[] progression = makeProgression(first, step, PROGRESSION_LENGTH);
-        int hiddenIndex = random.nextInt(REMOVED_INDEX_UPPER_EXCLUSIVE);
+        int hiddenIndex = RANDOM.nextInt(REMOVED_INDEX_UPPER_EXCLUSIVE);
         String answer = progression[hiddenIndex];
         progression[hiddenIndex] = "..";
         String question = String.join(" ", progression);
